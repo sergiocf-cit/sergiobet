@@ -4,13 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.sergiobet.dao.AppDatabase
 import com.example.sergiobet.databinding.ActivityLoginBinding
-import com.example.sergiobet.service.NextMatchesService
+import com.example.sergiobet.service.NextMatchesApiService
 import com.google.gson.GsonBuilder
-import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
@@ -30,21 +30,23 @@ class LoginActivity : AppCompatActivity() {
 
         val retrofit = Retrofit.Builder()
             .baseUrl("http://10.0.2.2:8080/ ")
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build();
 
-        val service = retrofit.create(NextMatchesService::class.java)
+        val service = retrofit.create(NextMatchesApiService::class.java)
 
         service.nextMatches().subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { result -> result.forEach { println(it)} }
+            .subscribe {
+                AppDatabase.getDatabase(this).nextMatchesDao().deleteAll()
+                AppDatabase.getDatabase(this).nextMatchesDao().insertAll(it)
+            }
     }
 
     private fun initLoginButton() {
         binding.loginButton.setOnClickListener {
 
-            if (isPasswordValid()) return@setOnClickListener
+            if (isNotPasswordValid()) return@setOnClickListener
 
             loadNextMatches()
 
@@ -54,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun isPasswordValid(): Boolean {
+    private fun isNotPasswordValid(): Boolean {
         if (binding.loginPassword.text.toString() != "123") {
             binding.loginPasswordLayout.error = "Password is wrong"
             return true

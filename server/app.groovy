@@ -27,6 +27,17 @@ class Service {
                     homeTeamFlag: 'https://www.futwiz.com/assets/img/fifa17/____futbadges/1035.png',
                     visitorTeamFlag: 'https://www.futwiz.com/assets/img/fifa17/____futbadges/517.png',
                     scheduledTime: '17:00 30/04/2020'])
+
+        result.add([description: 'Inter vs Liverpool',
+                    homeTeamFlag: 'https://www.futwiz.com/assets/img/fifa17/____futbadges/44.png',
+                    visitorTeamFlag: 'https://www.futwiz.com/assets/img/fifa17/____futbadges/9.png',
+                    scheduledTime: '17:00 30/04/2020'])
+
+        result.add([description: 'PSG vs Liverpool',
+                    homeTeamFlag: 'https://www.futwiz.com/assets/img/fifa17/____futbadges/73.png',
+                    visitorTeamFlag: 'https://www.futwiz.com/assets/img/fifa17/____futbadges/9.png',
+                    scheduledTime: '17:00 30/05/2020'])
+
         result
     }
 }

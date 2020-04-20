@@ -1,7 +1,5 @@
 package com.example.sergiobet.adapter
 
-import android.graphics.Bitmap
-import android.os.AsyncTask
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sergiobet.R
 import com.example.sergiobet.model.Match
 import com.squareup.picasso.Picasso
-import java.net.URL
-import java.net.URLConnection
 
 
 class NextMatchAdapter(private val nextMatchData: List<Match>) :
