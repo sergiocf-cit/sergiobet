@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SergioBet</string>
+
+    <string name="hello_blank_fragment">Alo Brasil</string>
+    <string name="login_description">Login Background</string>
+    <string name="login_login">Login</string>
+</resources>

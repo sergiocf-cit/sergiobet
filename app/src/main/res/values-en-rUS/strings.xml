@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SergioBet</string>
+
+    <string name="hello_blank_fragment">Hello USA</string>
+    <string name="login_description">Login Background</string>
+    <string name="login_login">Login</string>
+</resources>
