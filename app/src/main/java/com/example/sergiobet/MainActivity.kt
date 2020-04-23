@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
     private fun rotater() {
         val ball = findViewById<ImageView>(R.id.ball)
 
-        val animator = ObjectAnimator.ofFloat(ball, View.ROTATION, -360f, 1620f)
-        animator.duration = 6000
+        val animator = ObjectAnimator.ofFloat(ball, View.ROTATION, -360f, 1000f)
+        animator.duration = 5000
 
         animator.start()
     }
